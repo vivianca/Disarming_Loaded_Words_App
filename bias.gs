@@ -18,10 +18,11 @@ function showSidebar() {
 }
 
 function highlightBiasedWords() {
-	var corpusOfBiasedWords = ['bimbo', 'bitch', 'bombshell', 'catty', 'childish', 'cleavage', 'feisty', 'frump', 'matron', 'nasty', 'petite', 'scold', 'shrew', 'shrill'];
-	var body = DocumentApp.getActiveDocument().getBody();      
+  var corpusOfBiasedWords = ['bimbo', 'bitch', 'bombshell', 'catty', 'childish', 'cleavage', 'feisty', 'frump', 'matron', 'nasty', 'petite', 'scold', 'shrew', 'shrill'];
+  var body = DocumentApp.getActiveDocument().getBody();      
   for (var i = 0; i < corpusOfBiasedWords.length; i++) {
-    var found = body.findText(corpusOfBiasedWords[i]);
+    var toFind = "(?i)" + corpusOfBiasedWords[i];
+    var found = body.findText(toFind);
     while (found) {
       var elem = found.getElement();
       if (found.isPartial()) {
@@ -32,7 +33,7 @@ function highlightBiasedWords() {
       else {
         elem.setBackgroundColor("#FFB5B5");
       }
-      found = body.findText(corpusOfBiasedWords[i], found);
+      found = body.findText(toFind, found);
     }
   }
 }
