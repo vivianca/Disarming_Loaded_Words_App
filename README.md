@@ -6,13 +6,14 @@ Make all edits to the code here to avoid merge conflicts (which abound and are u
 
 ## Current status:
 
-The plugin can accurately highlight the biased word in any paragraph which has only one biased word.
+The plugin can accurately highlight biased words from our corpus in a Google Docs document.
 
 ## Next steps:
 
 ### Wizard of Oz prototype:
-- handle case of multiple biased words in a row or in the same paragraph
-  - plugin will currently only highlight the first instance of latest word in the biased-word-list because of the iteration logic
-- handle capital/lowercase regex
+- Improve sidebar
+	- Intro & description
+	- Collect highlighted words
+	- Add explanations of bias
 
 ### [on completion of backend API] Integrate backend
