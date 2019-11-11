@@ -18,28 +18,21 @@ function showSidebar() {
 }
 
 function highlightBiasedWords() {
-	var corpusOfBiasedWords = ['bimbo', 'bitch', 'blonde', 'bombshell', 'cat', 'cleavage', 'compassionate', 'complain', 'emotional', 'feisty', 'frump', 'grandma', 'matron', 'nasty', 'nurture', 'petite', 'scold', 'shrew', 'shrill', 'tart'];
-	var doc = DocumentApp.getActiveDocument();
-	for (var i = 0; i < corpusOfBiasedWords.length; i++) {
-		var textToHighlight = corpusofBiasedWords[i];
-		var textLength = textToHighlight.length;
-		var paras = doc.getParagraphs();
-		var paraText = '';
-		var start;
-		for (var j = 0; j < paras.length; ++j) {
-			paraText = paras[j].getText(); // first word of paragraph
-			start = paraText.indexOf(textToHighlight);
-			if (start >= 0) {
-				var preText = paraText.substr(0, start);
-				var text = paraText.substr(start, textLength);
-				var postText = paraText.substr(start + textLength, paraText.length);
-				doc.removeChild(paras[j]);
-				var newPara = doc.insertParagraph(j, preText);
-				newPara.appendText(text).setForegroundColor('#FF0000'); // red
-				if (postText != "") {
-					newPara.appendText(postText).setForegroundColor('#000000');
-				}
-			}
-		}
-	}
+	var corpusOfBiasedWords = ['bimbo', 'bitch', 'bombshell', 'catty', 'childish', 'cleavage', 'feisty', 'frump', 'matron', 'nasty', 'petite', 'scold', 'shrew', 'shrill'];
+	var body = DocumentApp.getActiveDocument().getBody();      
+  for (var i = 0; i < corpusOfBiasedWords.length; i++) {
+    var found = body.findText(corpusOfBiasedWords[i]);
+    while (found) {
+      var elem = found.getElement();
+      if (found.isPartial()) {
+        var start = found.getStartOffset();
+        var end = found.getEndOffsetInclusive();
+        elem.setBackgroundColor(start, end, "#FFB5B5");     
+      }
+      else {
+        elem.setBackgroundColor("#FFB5B5");
+      }
+      found = body.findText(corpusOfBiasedWords[i], found);
+    }
+  }
 }
