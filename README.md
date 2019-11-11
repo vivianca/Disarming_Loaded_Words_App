@@ -6,7 +6,7 @@ Make all edits to the code here to avoid merge conflicts (which abound and are u
 
 ## Current status:
 
-The plugin can accurately highlight biased words from our corpus in a Google Docs document.
+The plugin can accurately highlight case-insensitive biased words from our corpus in a Google Docs document.
 
 ## Next steps:
 
