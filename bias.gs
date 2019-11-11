@@ -27,7 +27,7 @@ function highlightBiasedWords() {
 		var paraText = '';
 		var start;
 		for (var j = 0; j < paras.length; ++j) {
-			paraText = paras[i].getText(); // first word of paragraph
+			paraText = paras[j].getText(); // first word of paragraph
 			start = paraText.indexOf(textToHighlight);
 			if (start >= 0) {
 				var preText = paraText.substr(0, start);
