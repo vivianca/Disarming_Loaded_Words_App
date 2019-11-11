@@ -21,7 +21,7 @@ function highlightBiasedWords() {
 	var corpusOfBiasedWords = ['bimbo', 'bitch', 'blonde', 'bombshell', 'cat', 'cleavage', 'compassionate', 'complain', 'emotional', 'feisty', 'frump', 'grandma', 'matron', 'nasty', 'nurture', 'petite', 'scold', 'shrew', 'shrill', 'tart'];
 	var doc = DocumentApp.getActiveDocument();
 	for (var i = 0; i < corpusOfBiasedWords.length; i++) {
-		var textToHighlight = corpusofBiasedWords[i];
+		var textToHighlight = corpusOfBiasedWords[i];
 		var textLength = textToHighlight.length;
 		var paras = doc.getParagraphs();
 		var paraText = '';
