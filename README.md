@@ -7,7 +7,7 @@ Make all edits to the code here to avoid merge conflicts (which abound and are u
 ## Next steps:
 
 ### Wizard of Oz prototype:
-- handle case of multiple biased words in a row
+- handle case of multiple biased words in a row or in the same paragraph
 - handle capital/lowercase regex
 
 ### [on completion of backend API] Integrate backend
