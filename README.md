@@ -6,7 +6,7 @@ Make all edits to the code here to avoid merge conflicts (which abound and are u
 
 ## Next steps:
 
-### Wizard of Oz prototype:
+### Wizard of Oz prototype:
 - handle case of multiple biased words in a row
 - handle capital/lowercase regex
 
