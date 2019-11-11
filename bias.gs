@@ -36,7 +36,7 @@ function highlightBiasedWords() {
 				doc.removeChild(paras[j]);
 				var newPara = doc.insertParagraph(j, preText);
 				newPara.appendText(text).setForegroundColor('#FF0000'); // red
-				if (postText == "") {
+				if (postText != "") {
 					newPara.appendText(postText).setForegroundColor('#000000');
 				}
 			}
