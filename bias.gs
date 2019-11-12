@@ -14,16 +14,17 @@ function showSidebar() {
 		.evaluate()
 		.setTitle("Disarming Loaded Words");
 	DocumentApp.getUi().showSidebar(html);
-	highlightBiasedWords();
 }
 
 function highlightBiasedWords() {
-  var corpusOfBiasedWords = ['bimbo', 'bitch', 'bombshell', 'catty', 'childish', 'cleavage', 'feisty', 'frump', 'matron', 'nasty', 'petite', 'scold', 'shrew', 'shrill'];
+  var corpusOfBiasedWords = ['bimbo', 'bitch', 'bombshell', 'catty', 'childish', 'cleavage', 'feisty', 'frump', 'matron', 'nasty', 'petite', 'scold', 'screech', 'shrew', 'shrill'];
+  var biasedWordsInText = [];
   var body = DocumentApp.getActiveDocument().getBody();      
   for (var i = 0; i < corpusOfBiasedWords.length; i++) {
     var toFind = "(?i)" + corpusOfBiasedWords[i];
     var found = body.findText(toFind);
     while (found) {
+      biasedWordsInText.push(toFind);
       var elem = found.getElement();
       if (found.isPartial()) {
         var start = found.getStartOffset();
@@ -36,4 +37,8 @@ function highlightBiasedWords() {
       found = body.findText(toFind, found);
     }
   }
+  //DocumentApp.getUi().alert("biased words in text " + biasedWordsInText);
+  DocumentApp.getUi().getElementById("biasedWords").innerHTML = "vivian";
+  return biasedWordsInText;
 }
+
