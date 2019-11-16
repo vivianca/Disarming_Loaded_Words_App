@@ -6,14 +6,15 @@ Make all edits to the code here to avoid merge conflicts (which abound and are u
 
 ## Current status:
 
-The plugin can accurately highlight case-insensitive biased words from our corpus in a Google Docs document.
+The plugin can accurately highlight case-insensitive biased words from our corpus in a Google Docs document and display them in the sidebar.
 
 ## Next steps:
 
 ### Wizard of Oz prototype:
 - Improve sidebar
-	- Intro & description
-	- Collect highlighted words
+	- Intro & description (DONE)
+	- Collect highlighted words (DONE)
+	- Beautify collected words
 	- Add explanations of bias
 
 ### [on completion of backend API] Integrate backend

@@ -1,19 +1,19 @@
 function onInstall() {
-	onOpen();
+  onOpen();
 }
 
 function onOpen() {
-	DocumentApp.getUi()
-	.createAddonMenu()
-	.addItem("Disarming Loaded Words", "showSidebar")
-	.addToUi();
+  DocumentApp.getUi()
+  .createAddonMenu()
+  .addItem("Disarming Loaded Words", "showSidebar")
+  .addToUi();
 }
 
 function showSidebar() {
-	var html = HtmlService.createTemplateFromFile("sidebar")
-		.evaluate()
-		.setTitle("Disarming Loaded Words");
-	DocumentApp.getUi().showSidebar(html);
+  var html = HtmlService.createTemplateFromFile("sidebar")
+    .evaluate()
+    .setTitle("Disarming Loaded Words");
+  DocumentApp.getUi().showSidebar(html);
 }
 
 function highlightBiasedWords() {
@@ -25,7 +25,9 @@ function highlightBiasedWords() {
     var toFind = "(?i)" + corpusOfBiasedWords[i];
     var found = body.findText(toFind);
     while (found) {
-      biasedWordsInText.push(toFind);
+      if (biasedWordsInText.indexOf(toFind)<0){
+        biasedWordsInText.push(toFind);
+      }
       var elem = found.getElement();
       if (found.isPartial()) {
         var start = found.getStartOffset();
@@ -40,4 +42,3 @@ function highlightBiasedWords() {
   }
   return biasedWordsInText;
 }
-

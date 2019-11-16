@@ -30,11 +30,15 @@
       }
       getBiasedWords();
       function doBias(words) {
-         document.getElementById("biasedWords").innerHTML = words[0];
+      
+         //build a string of words
+         innerString = "";
+         for(i = 0; i < words.length; ++i){
+            innerString+=words[i].substr(4) + "\n"; //4 gets rid of the regex
+         }
+         document.getElementById("biasedWords").innerHTML = innerString;
          console.log(words);
       }
     </script>
   </body>
 </html>
-
-
