@@ -22,6 +22,10 @@
     <p>Here are some words we found in the document that you might want check out for bias:</p>
     <p id="biasedWords" style="padding: 5%; text-align:left;"></p>
     <script>
+    
+      //hardcoded list of explanations
+      var explanations = {"cleavage":"This word inappropriately uses a woman's physical features.", "neckline":"This word inappropriately uses a woman's physical features."};
+    
       function getBiasedWords(){
          google.script.run
          .withSuccessHandler(doBias)
@@ -29,14 +33,22 @@
          .highlightBiasedWords();
       }
       getBiasedWords();
-      function doBias(words) {
-      
-         //build a string of words
-         innerString = "";
+      function doBias(words) { 
          for(i = 0; i < words.length; ++i){
-            innerString+=words[i].substr(4) + "\n"; //4 gets rid of the regex
+            var biasedWordDiv = document.createElement('div');
+            var word = words[i].substr(4); //4 gets rid of the regex
+            biasedWordDiv.innerHTML = "<b>"+ word + "<\/b>";
+            document.getElementById("biasedWords").appendChild(biasedWordDiv);
+            
+            //Append an explanation, if needed
+            var explanation = explanations[word];
+            if(explanation){
+                var explanationDiv = document.createElement('div');
+                explanationDiv.innerHTML = explanation;
+                document.getElementById("biasedWords").appendChild(explanationDiv);
+            }
+            
          }
-         document.getElementById("biasedWords").innerHTML = innerString;
          console.log(words);
       }
     </script>

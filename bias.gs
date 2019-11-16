@@ -17,7 +17,7 @@ function showSidebar() {
 }
 
 function highlightBiasedWords() {
-  var corpusOfBiasedWords = ['bimbo', 'bitch', 'bombshell', 'catty', 'childish', 'cleavage', 'feisty', 'frump', 'matron', 'nasty', 'petite', 'scold', 'screech', 'shrew', 'shrill'];
+  var corpusOfBiasedWords = ['bimbo', 'bitch', 'bombshell', 'catty', 'childish', 'cleavage', 'feisty', 'frump', 'matron', 'nasty', 'neckline', 'petite', 'scold', 'screech', 'shrew', 'shrill'];
   var biasedWordsInText = [];
   var body = DocumentApp.getActiveDocument().getBody();
  
