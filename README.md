@@ -12,7 +12,6 @@ The plugin can accurately highlight case-insensitive biased words from our corpu
 
 ### Wizard of Oz prototype:
 - Improve sidebar
-	- Beautify collected words
-	- Add explanations of bias
+	- Beautify collected words & explanations
 
 ### [on completion of backend API] Integrate backend
