@@ -22,18 +22,17 @@
     <p>Here are some words we found in the document that you might want check out for bias:</p>
     <p id="biasedWords" style="padding: 5%; text-align:left;"></p>
     <script>
-      var words = google.script.run.highlightBiasedWords();
-      console.log(words);
-      
-      /*wordsString = "";
-      for (i = 0; i < words.size; i++){
-          wordsString += words[i] + " ";
-      }*/
-     
-      /*function displayBiasedWords() {
-          document.getElementById("biasedWords").innerHTML = "vivian";
+      function getBiasedWords(){
+         google.script.run
+         .withSuccessHandler(doBias)
+         .withFailureHandler(function(msg,element){window.alert("failed");})
+         .highlightBiasedWords();
       }
-      displayBiasedWords();*/
+      getBiasedWords();
+      function doBias(words) {
+         document.getElementById("biasedWords").innerHTML = words[0];
+         console.log(words);
+      }
     </script>
   </body>
 </html>
