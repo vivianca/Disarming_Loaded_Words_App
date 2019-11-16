@@ -14,7 +14,7 @@ The plugin can accurately highlight case-insensitive biased words from our corpu
 - Improve sidebar
 	- Intro & description (DONE)
 	- Collect highlighted words (DONE)
-	- Beautify collected words
-	- Add explanations of bias
+	- Beautify collected words (DONE)
+	- Add explanations of bias (DONE)
 
 ### [on completion of backend API] Integrate backend
