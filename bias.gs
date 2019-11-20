@@ -17,7 +17,7 @@ function showSidebar() {
 }
 
 function highlightBiasedWords() {
-  var corpusOfBiasedWords = ['bimbo', 'bitch', 'bombshell', 'catty', 'catfigot', 'childish', 'cleavage', 'ditz', 'feisty', 'frump', 'matron', 'nasty', 'neckline', 'petite', 'pussy', 'sassy', 'scold', 'screech', 'shrew', 'shrill', 'slut', 'whine', 'whore'];
+  var corpusOfBiasedWords = ['bimbo', 'bitch', 'bombshell', 'catty', 'catfigot', 'childish', 'cleavage', 'ditz', 'feisty', 'frump', 'matron', 'nasty', 'neckline', 'petite', 'pussy', 'sassy', 'sexy', 'scold', 'screech', 'shrew', 'shrill', 'slut', 'whine', 'whore'];
   var biasedWordsInText = [];
   var body = DocumentApp.getActiveDocument().getBody();
  
@@ -42,4 +42,3 @@ function highlightBiasedWords() {
   }
   return biasedWordsInText;
 }
-
