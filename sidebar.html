@@ -24,7 +24,13 @@
     <script>
     
       //hardcoded list of explanations
-      var explanations = {"cleavage":"This word inappropriately uses a woman's physical features.", "neckline":"This word inappropriately uses a woman's physical features."};
+      var explanations = {
+      
+           "bimbo": "This word was flagged because, according to the Women's Media Center Guide to Fair and Accurate Language, it ascribes fault to women in cases of sexual misconduct, and implies a lack of intellect.",
+           "cleavage":"This word was flagged because, according to research we conducted, it is a word referring to an aspect of a woman's breasts, and is primarily used in a fashion or sexual context. In contrast, male anatomy is rarely mentioned in the context of political reporting.", 
+           "neckline":"This word was flagged because, according to research we conducted, it is a word referring to an aspect of a woman's breasts, and is primarily used in a fashion or sexual context. In contrast, male anatomy is rarely mentioned in the context of political reporting."
+           
+          };
     
       function getBiasedWords(){
          google.script.run
@@ -47,6 +53,11 @@
                 explanationDiv.innerHTML = explanation;
                 document.getElementById("biasedWords").appendChild(explanationDiv);
             }
+            
+            //Append blank div for beautification
+            var blankDiv = document.createElement('div');
+            blankDiv.innerHTML = "<p><\/p>";
+            document.getElementById("biasedWords").appendChild(blankDiv);
             
          }
          console.log(words);
