@@ -17,7 +17,33 @@ function showSidebar() {
 }
 
 function highlightBiasedWords() {
-  var corpusOfBiasedWords = ['bimbo', 'bitch', 'bombshell', 'catty', 'catfigot', 'childish', 'cleavage', 'ditz', 'feisty', 'frump', 'matron', 'nasty', 'neckline', 'petite', 'pussy', 'sassy', 'sexy', 'scold', 'screech', 'shrew', 'shrill', 'slut', 'whine', 'whore'];
+  
+  //Pseudocode for next steps
+  /*
+  1. Get body of document (DONE)
+  2. Set the body of http request to the body of document (DONE)
+  3. Send a POST request (DONE)
+  4. When we get the list of words back -> highlight those words
+  */
+  
+  /* COMMENTED OUT --- this code passes the body of the document to the model via an API call
+  body_string = DocumentApp.getActiveDocument().getBody().getText();
+ 
+  var document_body = {
+    'body': body_string
+  };
+  
+  var request_body= {
+  'method' : 'post',
+  'contentType': 'application/json',
+  'payload' : JSON.stringify(document_body)
+  }
+  
+  var response = UrlFetchApp.fetch('http://c4a7a068.ngrok.io/api/v2.0/post', request_body);
+  DocumentApp.getUi().alert(response);
+  */
+
+  var corpusOfBiasedWords = ['bimbo', 'bitch', 'bombshell', 'catty', 'catfight', 'childish', 'cleavage', 'ditz', 'feisty', 'frump', 'matron', 'nasty', 'neckline', 'petite', 'pussy', 'sassy', 'sexy', 'scold', 'screech', 'shrew', 'shrill', 'slut', 'whine', 'whore'];
   var biasedWordsInText = [];
   var body = DocumentApp.getActiveDocument().getBody();
  
