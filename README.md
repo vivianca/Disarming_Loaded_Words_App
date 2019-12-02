@@ -16,4 +16,4 @@ Improved UI features (from user feedback):
 - Color words a different color if they are inside a quotation
 - Have different sensitivity levels ("high", "low", "medium")---changes the threshold
 
-### [on completion of backend API] Integrate backend
+### Integrate backend: COMPLETE
