@@ -6,8 +6,18 @@ function onOpen() {
   DocumentApp.getUi()
   .createAddonMenu()
   .addItem("Run", "showSidebar")
+    /*.addItem("Run - High Sensitivity", "highSensitivity")
+    .addItem("Run - Low Sensitivity", "lowSensitivity")*/
   .addToUi();
 }
+
+/*function highSensitivity(){
+  showSidebar();
+}
+
+function lowSensitivity(){
+  showSidebar();
+}*/
 
 function showSidebar() {
   var html = HtmlService.createTemplateFromFile("sidebar")
@@ -26,7 +36,7 @@ function highlightBiasedWords() {
   4. When we get the list of words back -> highlight those words
   */
   
-  /* COMMENTED OUT --- this code passes the body of the document to the model via an API call
+  //this code passes the body of the document to the model via an API call
   body_string = DocumentApp.getActiveDocument().getBody().getText();
  
   var document_body = {
@@ -39,16 +49,31 @@ function highlightBiasedWords() {
   'payload' : JSON.stringify(document_body)
   }
   
-  var response = UrlFetchApp.fetch('http://c4a7a068.ngrok.io/api/v2.0/post', request_body);
-  DocumentApp.getUi().alert(response);
-  */
-
+  var response = UrlFetchApp.fetch('http://7cdba659.ngrok.io/api/v2.0/post', request_body);
+  //DocumentApp.getUi().alert(response);
+  
+  //Take response and build a custom list of biased words.
+  var jsonObj = JSON.parse(response);
+  var wordsInContext = []
+  
+  //always biased words
   var corpusOfBiasedWords = ['bimbo', 'bitch', 'bombshell', 'catty', 'catfight', 'childish', 'cleavage', 'ditz', 'feisty', 'frump', 'matron', 'nasty', 'neckline', 'petite', 'pussy', 'sassy', 'sexy', 'scold', 'screech', 'shrew', 'shrill', 'slut', 'whine', 'whore'];
+  
+  // for loop that populates wordsInContext
+  for (var wordBlob in jsonObj) {
+    if (wordsInContext.indexOf(jsonObj[wordBlob].word)<0 && corpusOfBiasedWords.indexOf(jsonObj[wordBlob].word)<0){
+        wordsInContext.push(jsonObj[wordBlob].word);
+    }
+  }
+
+  //concatenate(corpusOfBiasedWords, wordsInContext)
+  var allBiasedWords = corpusOfBiasedWords.concat(wordsInContext);
+  
   var biasedWordsInText = [];
   var body = DocumentApp.getActiveDocument().getBody();
  
-  for (var i = 0; i < corpusOfBiasedWords.length; i++) {
-    var toFind = "(?i)" + corpusOfBiasedWords[i];
+  for (var i = 0; i < allBiasedWords.length; i++) {
+    var toFind = "(?i)" + allBiasedWords[i];
     var found = body.findText(toFind);
     while (found) {
       if (biasedWordsInText.indexOf(toFind)<0){
@@ -58,7 +83,8 @@ function highlightBiasedWords() {
       if (found.isPartial()) {
         var start = found.getStartOffset();
         var end = found.getEndOffsetInclusive();
-        elem.setBackgroundColor(start, end, "#FFB5B5");     
+        elem.setBackgroundColor(start, end, "#FFB5B5");
+        //elem.asText().setLinkUrl(start, end, "google.com");
       }
       else {
         elem.setBackgroundColor("#FFB5B5");

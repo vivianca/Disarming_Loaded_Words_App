@@ -24,14 +24,19 @@
     <script>
     
       //hardcoded list of explanations
-      var explanations = {
-      
-           "bimbo": "This word was flagged because, according to the Women's Media Center Guide to Fair and Accurate Language, it ascribes fault to women in cases of sexual misconduct, and implies a lack of intellect.",
-           "cleavage":"This word was flagged because, according to research we conducted, it is a word referring to an aspect of a woman's breasts, and is primarily used in a fashion or sexual context. In contrast, male anatomy is rarely mentioned in the context of political reporting.", 
-           "neckline":"This word was flagged because, according to research we conducted, it is a word referring to an aspect of a woman's breasts, and is primarily used in a fashion or sexual context. In contrast, male anatomy is rarely mentioned in the context of political reporting."
-           
+      var explanations = {  
+           "bimbo": "According to the Women's Media Center Guide to Fair and Accurate Language, it ascribes fault to women in cases of sexual misconduct, and implies a lack of intellect. See <a href=\"https://twitter.com/LeeLeeLeeLee/status/1093941172085633024?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E1093941172085633024&ref_url=https%3A%2F%2Fwww.dallasnews.com%2Fnews%2F2019%2F02%2F09%2Frichardson-councilman-issues-apology-after-calling-newly-elected-u-s-rep-ocasio-cortez-a-bimbo%2F\">this tweet from Richardson, TX city council member Scott Dunn about Rep. Alexandria Ocasio-Cortez, D-N.Y.</a>.",
+           "bitch": "It is a word used to denigrate women and can hint at one or more undesirable qualities historically used to devalue a woman's actions (i.e. crazy, a shrew, vindictive, or merely rebellious to a fault). See <a href=\"https://www.theatlantic.com/business/archive/2017/08/women-work-queen-bee/535797/\">this article criticizing the use of the word ‘bitchy’</a>.",
+           "catty": "It is a word often applied to conflict between women to suggest that the conflict is of a petty nature without real consequence. In contrast, conflict between men is described in terms ranging from 'banter' to 'disagreement'. See <a href=\"https://www.theatlantic.com/business/archive/2017/08/women-work-queen-bee/535797/\">this article criticizing the use of the word ‘catty’</a>.",
+           "cleavage": "It is a word referring to an aspect of a woman's breasts, and is primarily used in a fashion or sexual context. In contrast, male anatomy is rarely mentioned in the context of political reporting. See <a href=\"https://www.sun-sentinel.com/news/fl-xpm-2007-07-23-0707200237-story.html\">this Sun Sentinel article scrutinizing Hillary Clinton's anatomy during her 2008 presidential bid</a>.",
+           "matronly": "It is a word that defines a woman by a stereotypically domestic role, and is often used in context to criticize a woman’s appearance. See <a href=\"https://www.harpersbazaar.com/culture/politics/a25311188/alexandria-ocasio-cortez-workwear-how-to-dress-for-work-discrimination/\">this article about critiquing women’s dress at work</a>.",
+           "neckline": "It is a word referring to an aspect of a woman's breasts, and is primarily used in a fashion or sexual context. In contrast, male anatomy is rarely mentioned in the context of political reporting.",
+           "feisty": "While this word is not the most egregious offender, it is often used to describe women who stand their ground or put up a fight for what they want. It therefore marks this behavior as deserving of special attention for a woman (as opposed to normalized or accepted for a man). See <a href=\"https://www.huffpost.com/entry/elizabeth-warren-billionaire-tears_n_5dccc1d6e4b0a794d1fa712d\">this article about Sen. Elizabeth Warren, D-MA.</a>",
+           "frump": "It is a word used to lessen the value a woman brings by suggesting that her desexualization (due to age, poverty, or other circumstantial factors) renders her less relevant/ attractive, especially in spheres, like politics, where qualifications should matter; yet reporting often emphasizes appearance for women. See <a href=\"https://www.racked.com/2017/5/18/15586224/frump-unflattering-women-aging\">this article explaining the meaning behind the word</a>.",
+           "pussy": "It is a word that reduces women to objects of sexual gratification; famously referenced by President Trump when he spoke about 'grabbing [women] by the pussy' and became a point of contention in subsequent women's marches.",
+           "whore": "It is a word that means 'prostitute,' so when used as an insult or name-call, it reduces a woman's worth to her sexual activity. See <a href=\"http://sk.sagepub.com/reference/the-sage-encyclopedia-of-psychology-and-gender/i15927.xml\">this entry</a> in the SAGE Encyclopedia of Psychology and Gender."
           };
-    
+
       function getBiasedWords(){
          google.script.run
          .withSuccessHandler(doBias)
@@ -46,14 +51,16 @@
             biasedWordDiv.innerHTML = "<b>"+ word + "<\/b>";
             document.getElementById("biasedWords").appendChild(biasedWordDiv);
             
-            //Append an explanation, if needed
-            var explanation = explanations[word];
+            //Append an explanation
+            var explanation = explanations[word]; //we have an explanation in the corpus
+            if(!explanation){
+               explanation = "This word was flagged because, according to historical data from Google News, its use in context has been linked to bias against women."
+            }
             if(explanation){
                 var explanationDiv = document.createElement('div');
                 explanationDiv.innerHTML = explanation;
                 document.getElementById("biasedWords").appendChild(explanationDiv);
             }
-            
             //Append blank div for beautification
             var blankDiv = document.createElement('div');
             blankDiv.innerHTML = "<p><\/p>";
