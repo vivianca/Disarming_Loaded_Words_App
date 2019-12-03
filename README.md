@@ -16,4 +16,4 @@ The plugin can accurately highlight case-insensitive biased words from our corpu
 Improved UI features (from user feedback):
 - Make words clickable (so that when you click on a word, it shows the insight, and you don't have to go to the side panel)
 - Color words a different color if they are inside a quotation
-- ~Have different sensitivity levels ("high", "low", "medium")---changes the threshold~ COMPLETE
+- ~Have different sensitivity levels ("high", "low", "medium")---changes the threshold~ COMPLETE (Note: sensitivity threshold uses CacheScript, which may sometimes return null if cache expires. Unlikely in current use case but noted.)
