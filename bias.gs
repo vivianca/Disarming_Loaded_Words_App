@@ -1,3 +1,20 @@
+var cache = CacheService.getScriptCache();
+
+function highSensitivity(){
+  cache.put('sensitivity_threshold', 0.5);
+  showSidebar();
+}
+
+function mediumSensitivity(){
+  cache.put('sensitivity_threshold', 0.4);
+  showSidebar();
+}
+
+function lowSensitivity(){
+  cache.put('sensitivity_threshold', 0.25);
+  showSidebar();
+}
+
 function onInstall() {
   onOpen();
 }
@@ -5,19 +22,12 @@ function onInstall() {
 function onOpen() {
   DocumentApp.getUi()
   .createAddonMenu()
-  .addItem("Run", "showSidebar")
-    /*.addItem("Run - High Sensitivity", "highSensitivity")
-    .addItem("Run - Low Sensitivity", "lowSensitivity")*/
+  //.addItem("Run", "showSidebar")
+   .addItem("Run - High Sensitivity", "highSensitivity")
+   .addItem("Run - Medium Sensitivity", "mediumSensitivity")
+   .addItem("Run - Low Sensitivity", "lowSensitivity")
   .addToUi();
 }
-
-/*function highSensitivity(){
-  showSidebar();
-}
-
-function lowSensitivity(){
-  showSidebar();
-}*/
 
 function showSidebar() {
   var html = HtmlService.createTemplateFromFile("sidebar")
@@ -26,8 +36,9 @@ function showSidebar() {
   DocumentApp.getUi().showSidebar(html);
 }
 
-function highlightBiasedWords() {
+function highlightBiasedWords() {  
   
+  //DocumentApp.getUi().alert(cache.get('sensitivity_threshold'));
   //Pseudocode for next steps
   /*
   1. Get body of document (DONE)
@@ -38,9 +49,11 @@ function highlightBiasedWords() {
   
   //this code passes the body of the document to the model via an API call
   body_string = DocumentApp.getActiveDocument().getBody().getText();
+  th = cache.get('sensitivity_threshold').toString();
  
   var document_body = {
-    'body': body_string
+    'body': body_string,
+    'sensitivity': th
   };
   
   var request_body= {
